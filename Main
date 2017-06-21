@@ -1,0 +1,94 @@
+num = ''
+process = ''
+def int_to_rom():
+    global num
+    num = input('write a number \n')
+    rom_nums = {'1':['I','X','C','M'],'2':['II','XX','CC','MM'],
+                '3':['III','XXX','CCC','MMM'],'4':['IV','XL','CD'],
+                '5':['V','L','D'],'6':['VI','LX','DC'],'7':['VII','LXX','DCC'],
+                '8':['VIII','LXXX','DCCC'],'9':['IX','XC','CM'],'0':['','','']}
+    numlist = list(num)
+    
+    if int(numlist[0])>=4 or len(num)>4:
+            print('the number cant be equal or bigger than 4000')
+
+    if len(num)==4:
+
+        a = numlist[0]
+        digit1 = rom_nums[a][3]
+        
+        b = numlist[1]
+        digit2 = rom_nums[b][2]
+
+        c = numlist[2]
+        digit3 = rom_nums[c][1]
+
+        d = numlist[3]
+        digit4 = rom_nums[d][0]
+            
+        result = digit1+ digit2+ digit3+ digit4
+        print(num,'=',result)
+        
+    if len(num)==3:
+        b = numlist[0]
+        digit2 = rom_nums[b][2]
+
+        c = numlist[1]
+        digit3 = rom_nums[c][1]
+    
+        d = numlist[2]
+        digit4 = rom_nums[d][0]
+
+        result = digit2+ digit3+ digit4
+        print(num,'=',result)
+
+    if len(num)==2:
+        c = numlist[0]
+        digit3 = rom_nums[c][1]
+
+        d = numlist[1]
+        digit4 = rom_nums[d][0]
+
+        result = digit3+ digit4
+        print(num,'=',result)
+
+    if len(num)==1:
+        d = numlist[0]
+        digit4 = rom_nums[d][0]
+        
+        result = digit4
+        print(num,'=',result)
+        
+def rom_to_int():
+    int_nums = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+    result = 0
+    num = input('Write a roman number \n')
+    numlist = list(num)
+    for x in numlist:
+        result += int_nums[x]
+    if 'IV' in num:
+        result -= 2
+    if 'IX' in num:
+        result -= 2
+    if 'XL' in num:
+        result -= 20
+    if 'XC' in num:
+        result -= 20
+    if 'CD' in num:
+        result -= 200
+    if 'CM' in num:
+        result -= 200
+    print(num,'=',result)
+    
+def what_process():
+    global process
+    print('write "freeze" to stop the program')
+    process = input('''To convert from integer to roman number press "i"
+To convert from roman number to integer press "r" \n''')
+    if process == 'i':
+        int_to_rom()
+    if process == 'r':
+        rom_to_int()
+                
+while process != "freeze":
+    what_process()
